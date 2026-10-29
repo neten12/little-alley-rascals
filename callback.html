@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Alley Rascals Publisher</title>
+<style>
+/* layout: single reading column, alley-night palette with a pink neon accent */
+:root { --bg:#fbf8f3; --fg:#2a2430; --muted:#6c6474; --accent:#c2228f; --rule:#e5ddd3; --display:"Fraunces",Georgia,serif; --body:"Source Sans 3",system-ui,sans-serif }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#181420; --fg:#efe8ee; --muted:#a79fae; --accent:#ff5fc4; --rule:#352d3f; color-scheme:dark } }
+:root[data-theme="dark"] { --bg:#181420; --fg:#efe8ee; --muted:#a79fae; --accent:#ff5fc4; --rule:#352d3f; color-scheme:dark }
+body { background:var(--bg); color:var(--fg); font-family:var(--body); font-size:17px; line-height:1.55; padding-block:40px 64px; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)) }
+main { max-width:40rem; margin:0 auto }
+h1 { font-family:var(--display); font-size:2.2rem; line-height:1.1; margin:0 0 .25rem; text-wrap:balance }
+.eyebrow { text-transform:uppercase; letter-spacing:.08em; font-size:.8rem; color:var(--accent); font-weight:600 }
+.meta { color:var(--muted); margin:0 0 2rem; font-size:.95rem }
+h2 { font-family:var(--display); font-size:1.3rem; margin:2rem 0 .5rem; padding-top:1.2rem; border-top:1px solid var(--rule) }
+p, li { margin:0 0 .8rem }
+ul { padding-left:1.2rem }
+code { font-family:ui-monospace,Consolas,monospace; font-size:.9em }
+a { color:var(--accent) }
+</style></head>
+<body>
+<main>
+<p class="eyebrow">Little Alley Rascals Publisher</p>
+<h1>Authorization received</h1>
+<p class="meta">You can close this window.</p>
+<p>The publishing tool has received the sign-in confirmation. Nothing else happens on this page.</p>
+<p id="code" style="word-break:break-all;color:var(--muted);font-size:.9rem"></p>
+<script>
+  var q = new URLSearchParams(location.search);
+  if (q.get("code")) { document.getElementById("code").textContent = "code: " + q.get("code"); }
+  if (q.get("error")) { document.getElementById("code").textContent = "error: " + q.get("error") + " " + (q.get("error_description") || ""); }
+</script>
+</main>
+</body>
+</html>
